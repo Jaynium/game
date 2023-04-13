@@ -17,6 +17,7 @@ wilderness = 'Eldham Wilderness'
 beach = 'Eldham Beach'
 health = 100
 inventory = []
+equipment = []
 died = "You died"
 
 if age < 18:
@@ -25,10 +26,19 @@ if age < 18:
 
 if input == "health":
     print('Your health is', health)
+if health <= 0:
+    print(died)
+    exit()
 
 #set up a while loop to check if user has entered a valid location
 while location != "town" and location != "forest" and location != "wilderness" and location != "beach":
     location = input("Please enter a valid location (town, forest, wilderness or beach): ")
+while investigate != "y" and investigate != "n":
+    investigate = input("Please enter a valid option (y/n): ")
+while attack != "y" and attack != "n":
+    attack = input("Please enter a valid option (y/n): ")
+while open_chest != "y" and open_chest != "n":
+    open_chest = input("Please enter a valid option (y/n): ")
 
 if location == "town":
     print(f"You wake up in a dark cottage, you are in a town called {town}, You have no idea how you got there, but you know you need to get out. You look around and see a door, and a window. Which do you choose?")
@@ -44,17 +54,35 @@ if location == "town":
         #ask user for input, and store in variable. yes or no
         investigate = input("y/n? ")
         #set up a while loop to check if user has entered a valid location
-        while investigate != "y" and investigate != "n":
-            investigate = input("Please enter a valid location (y/n): ")
         if investigate == "y":
-            print('A rabid dog jumps out and bites you')
+            print('A dog jumps out and bites your leg')
             print('You lose 10 health')
             health = health - 10
-            print('Your health is now', health)
-
-            if health <= 0:
-                print(died)
-                exit()
+            print(f'Your health is now {health}%')
+            attack = input("Do you want to attack the dog? y/n? ")
+            if attack == "y":
+                print('You kick the dog and it runs away')
+                print('')
+                if health <= 0:
+                    print(died)
+                    exit()
+            if attack == "n":
+                print('You run away')
         if investigate == "n":
-            print('You continue down the alleyway and spot a chest, you open it and find a key')
-            inventory.append('key to armory')
+            print('Probably a good choice to stay away from that until you find a weapon')
+
+    print('You continue down the alleyway and spot a chest, do you want to open it?')
+    open_chest = input("y/n? ")
+    if open_chest == "y":
+        print('You open the chest and find a key')
+        inventory.append('key to armory')
+        print('You now have a key to the armory')
+    if open_chest == "n":
+        print('You decide to leave the chest alone')
+    print('You continue down the alleyway and find a door, the sign above the door says "Armory"')
+    if inventory == "key to armory":
+        print('You open the door and find a sword')
+        inventory.append('sword')
+        print('You now have a sword')
+    if inventory != "key to armory":
+        print('You need a key to open the door')
