@@ -30,19 +30,17 @@ if health <= 0:
     print(died)
     exit()
 
-#set up a while loop to check if user has entered a valid location
 while location != "town" and location != "forest" and location != "wilderness" and location != "beach":
     location = input("Please enter a valid location (town, forest, wilderness or beach): ")
-while investigate != "y" and investigate != "n":
-    investigate = input("Please enter a valid option (y/n): ")
-while attack != "y" and attack != "n":
-    attack = input("Please enter a valid option (y/n): ")
-while open_chest != "y" and open_chest != "n":
-    open_chest = input("Please enter a valid option (y/n): ")
+#while investigate != "y" and investigate != "n":
+    #investigate = input("Please enter a valid option (y/n): ")
+#while attack != "y" and attack != "n":
+    #attack = input("Please enter a valid option (y/n): ")
+#while open_chest != "y" and open_chest != "n":
+    #open_chest = input("Please enter a valid option (y/n): ")
 
 if location == "town":
     print(f"You wake up in a dark cottage, you are in a town called {town}, You have no idea how you got there, but you know you need to get out. You look around and see a door, and a window. Which do you choose?")
-    #ask user for input, and store in variable. door or window
     door_or_window = input("Door or window? ")
     #set up a while loop to check if user has entered a valid location
     while door_or_window != "door" and door_or_window != "window":
@@ -53,6 +51,8 @@ if location == "town":
         print('The window opens, you climb out and find yourself in a dark alleyway, there are strange noises coming from behind a bale of hay. Do you investigate?')
         #ask user for input, and store in variable. yes or no
         investigate = input("y/n? ")
+        while investigate != "y" and investigate != "n":
+            investigate = input("Please enter a valid option (y/n): ")
         #set up a while loop to check if user has entered a valid location
         if investigate == "y":
             print('A dog jumps out and bites your leg')
@@ -60,6 +60,8 @@ if location == "town":
             health = health - 10
             print(f'Your health is now {health}%')
             attack = input("Do you want to attack the dog? y/n? ")
+            while attack != "y" and attack != "n":
+                attack = input("Please enter a valid option (y/n): ")
             if attack == "y":
                 print('You kick the dog and it runs away')
                 print('')
@@ -73,6 +75,8 @@ if location == "town":
 
     print('You continue down the alleyway and spot a chest, do you want to open it?')
     open_chest = input("y/n? ")
+    while open_chest != "y" and open_chest != "n":
+        open_chest = input("Please enter a valid option (y/n): ")
     if open_chest == "y":
         print('You open the chest and find a key')
         inventory.append('key to armory')
